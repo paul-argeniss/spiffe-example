@@ -53,8 +53,8 @@ demo:
 	sleep 5 # TODO: Find another way of making sure server is up before agents
 	docker-compose exec spire bash -c 'cd /home/rosemary/artifact/ && ./registration'
 	docker-compose up -d blog database harness
-	docker-compose exec blog cp /home/rosemary/artifact/sidecar /sidecar/sidecar
-	docker-compose exec database cp /home/rosemary/artifact/sidecar /sidecar/sidecar
+	docker-compose exec --user blog blog cp /home/rosemary/artifact/sidecar /sidecar/sidecar
+	docker-compose exec --user database database cp /home/rosemary/artifact/sidecar /sidecar/sidecar
 	docker-compose exec harness cp /home/rosemary/harness/rosemary.yml /root/.tmuxinator/rosemary.yml
 	docker-compose exec harness tmuxinator rosemary
 	docker-compose stop harness

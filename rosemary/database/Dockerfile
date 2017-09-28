@@ -14,13 +14,16 @@ COPY ghostunnel /root/
 COPY sidecar_config.hcl /sidecar/
 COPY *.sh /spire/
 RUN tar --directory / -xvzf /artifact.tgz
-WORKDIR /spire/
 
 RUN addgroup spire && \
    adduser --uid 1111 --disabled-password --shell /bin/bash --ingroup spire spire
+RUN chown -R spire /spire
 
-RUN chown -R spire /spire /sidecar
+RUN addgroup database && \
+   adduser --uid 1119 --disabled-password --shell /bin/bash --ingroup database database
+RUN chown -R database /sidecar
+
 USER spire
-
+WORKDIR /spire/
 CMD ./spire-agent run
 
