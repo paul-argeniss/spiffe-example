@@ -9,6 +9,7 @@ checkout:
 	mkdir build/repos
 	git clone git@github.com:$(SPIRE_REPO).git build/repos/spire
 	git -C build/repos/spire checkout $(SPIRE_REF)
+	git -C build/repos/spire cherry-pick 3368c640afd085ed902cb606141d30d2c2a529e3 00093bd9fa6c20b8bd1e29559972076310ccb187 # We need this fix to support multiple users
 
 build-artifact:
 	rm -rf artifact spire/upstreamca-memory-keys/
