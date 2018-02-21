@@ -1,0 +1,10 @@
+[Service]
+Type=simple
+User=ubuntu
+Restart=always
+RestartSec=3
+WorkingDirectory=/opt/
+ExecStart=/opt/node_exporter
+
+[Install]
+WantedBy=multi-user.target

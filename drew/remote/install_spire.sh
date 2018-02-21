@@ -10,11 +10,14 @@ NUM_WORKLOAD=${NUM_WORKLOAD:-10}
 #AWS_IID_TGZ
 #AWS_RES_TGZ
 #GROK_EXPORTR_TGZ
+#NODE_EXPORTER_TGZ
+
 mode="$1"
 sudo rm -rf /opt/spire*
 curl --silent --location $SPIRE_TGZ | sudo tar --directory /opt -xzf -
 curl --silent --location $AWS_IID_TGZ | sudo tar --directory /opt/spire* -xzf -
 curl --silent --location $AWS_RES_TGZ | sudo tar --directory /opt/spire* -xzf -
+curl --silent --location $NODE_EXPORTER_TGZ | sudo tar --directory /opt --strip-components 1 -xzf - 
 
 if [[ $mode == "server" ]]; then
     sudo rm -rf /opt/grok_exporter*
@@ -36,6 +39,9 @@ sudo chown -R ubuntu:ubuntu /opt/spire*
 
 sudo cp /tmp/remote/systemd/spire-${mode}.service /etc/systemd/system/
 sudo systemctl enable spire-${mode}.service
+
+sudo cp /tmp/remote/systemd/node-exporter.service /etc/systemd/system/
+sudo systemctl enable node-exporter.service
 
 mk_sysd() {
 	local _n="$(printf '%03d' $n)"

@@ -6,6 +6,7 @@
     "AWS_IID_TGZ": "{{env `TF_VAR_AWS_IID_TGZ`}}",
     "AWS_RES_TGZ": "{{env `TF_VAR_AWS_RES_TGZ`}}",
     "GROK_EXPORTR_TGZ": "{{env `TF_VAR_GROK_EXPORTR_TGZ`}}",
+    "NODE_EXPORTER_TGZ": "{{env `TF_VAR_NODE_EXPORTER_TGZ`}}",
     "demo_name": "{{env `demo_name`}}"
   },
   "builders": [
@@ -78,6 +79,7 @@
       "NUM_WORKLOAD={{user `WORKLOADS`}}",
       "SPIRE_TGZ={{user `SPIRE_TGZ`}}",
       "AWS_IID_TGZ={{user `AWS_IID_TGZ`}}",
+      "NODE_EXPORTER_TGZ={{user `NODE_EXPORTER_TGZ`}}",
       "AWS_RES_TGZ={{user `AWS_RES_TGZ`}}"
 	]
 	},
@@ -93,6 +95,7 @@
       "SPIRE_TGZ={{user `SPIRE_TGZ`}}",
       "AWS_IID_TGZ={{user `AWS_IID_TGZ`}}",
       "GROK_EXPORTR_TGZ={{user `GROK_EXPORTR_TGZ`}}",
+      "NODE_EXPORTER_TGZ={{user `NODE_EXPORTER_TGZ`}}",
       "AWS_RES_TGZ={{user `AWS_RES_TGZ`}}"
 	]
 	}
